@@ -1,0 +1,36 @@
+body {
+  background-color: #f9f9f9 !important;
+  font-size: 15px;
+  font-family: 'Titillium Web', sans-serif !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+.ui.button,
+.ui.input,
+.ui.form input {
+  font-family: 'Titillium Web', sans-serif !important;
+}
+
+header {
+  height: 50px;
+  background: #1a2129;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 1;
+}
+
+header h2 {
+  color: #fff;
+  margin: 0;
+  padding: 10px;
+  position: absolute;
+  left: 10px;
+}
+
+.app {
+  margin-top: 100px;
+}
