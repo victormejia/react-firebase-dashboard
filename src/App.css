@@ -34,3 +34,24 @@ header h2 {
 .app {
   margin-top: 100px;
 }
+
+
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ui.card.login-card {
+  width: 450px;
+}
+
+.login.button {
+  float: right;
+}
+
+.ui.form input[type=text],
+.ui.form input[type=password],
+.ui.form select {
+  margin-top: 10px;
+}
