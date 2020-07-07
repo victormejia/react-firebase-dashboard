@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import './App.css';
+import './firebase/config';
 
 function App() {
   return (
