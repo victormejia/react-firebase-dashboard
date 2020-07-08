@@ -55,3 +55,10 @@ header h2 {
 .ui.form select {
   margin-top: 10px;
 }
+
+.logout {
+  float: right;
+  position: relative;
+  top: 4px;
+  right: 15px;
+}
