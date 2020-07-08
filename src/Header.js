@@ -9,18 +9,19 @@ function Header() {
 
   const logoutUser = async () => {
     await logout();
-    history.push('/signup');
+    history.push('/login');
   };
 
   return (
     <header>
       <h2>The Grid</h2>
-      {!!user &&
-      <button className="ui secondary button logout" onClick={logoutUser}>
-        LOGOUT
-      </button>}
+      {!!user && (
+        <button className="ui secondary button logout" onClick={logoutUser}>
+          LOGOUT
+        </button>
+      )}
     </header>
-  )
+  );
 }
 
 export default Header;

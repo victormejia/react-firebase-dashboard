@@ -35,7 +35,6 @@ header h2 {
   margin-top: 100px;
 }
 
-
 .login-container {
   display: flex;
   align-items: center;
@@ -46,12 +45,8 @@ header h2 {
   width: 450px;
 }
 
-.login.button {
-  float: right;
-}
-
-.ui.form input[type=text],
-.ui.form input[type=password],
+.ui.form input[type='text'],
+.ui.form input[type='password'],
 .ui.form select {
   margin-top: 10px;
 }
@@ -61,4 +56,16 @@ header h2 {
   position: relative;
   top: 4px;
   right: 15px;
+}
+
+.actions {
+  text-align: right;
+}
+
+.actions button {
+  margin-right: 5px;
+}
+
+.actions a {
+  margin-left: 5px;
 }
