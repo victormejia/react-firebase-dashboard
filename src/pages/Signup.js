@@ -2,19 +2,25 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { signup } from '../firebase/auth';
 
-function Signup() {
+function Signup(props) {
   const { register, handleSubmit, reset } = useForm();
   const [isLoading, setLoading] = useState(false);
 
   const onSubmit = async (data) => {
+    let newUser;
     setLoading(true);
     try {
-      await signup(data);
+      newUser = await signup(data);
       reset();
     } catch(error) {
       console.log(error);
     }
-    setLoading(false);
+
+    if (newUser) {
+      props.history.push(`/profile/${newUser.uid}`);
+    } else {
+      setLoading(false);
+    }
   }
 
   const formClassName = `ui form ${isLoading ? 'loading' : ''}`;
