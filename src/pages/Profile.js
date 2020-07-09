@@ -3,12 +3,14 @@ import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useSession } from '../firebase/UserProvider';
 import { firestore } from '../firebase/config';
+import { updateUserDocument } from '../firebase/user';
 
 const Profile = () => {
   const { user } = useSession();
   const params = useParams();
-  const { register, setValue } = useForm();
+  const { register, setValue, handleSubmit } = useForm();
   const [userDocument, setUserDocument] = useState(null);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     const docRef = firestore.collection('users').doc(params.id);
@@ -24,18 +26,31 @@ const Profile = () => {
       }
     });
     return unsubscribe;
-  }, [user.uid, setValue]);
+  }, [user.uid, setValue, params.id]);
+
+  const onSubmit = async (data) => {
+    try {
+      setLoading(true);
+      await updateUserDocument({ uid: params.id, ...data });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (!userDocument) {
     return null;
   }
+
+  const formClassname = `ui big form ${isLoading ? 'loading' : ''}`;
 
   return (
     <div
       className="add-form-container"
       style={{ maxWidth: 960, margin: '50px auto' }}
     >
-      <form className="ui big form">
+      <form className={formClassname} onSubmit={handleSubmit(onSubmit)}>
         <div className="fields">
           <div className="eight wide field">
             <label>
@@ -98,7 +113,7 @@ const Profile = () => {
           <div className="field">
             <label>
               ip
-              <input type="text" name="ip" />
+              <input type="text" name="ip" ref={register} />
             </label>
           </div>
         </div>
