@@ -69,3 +69,22 @@ header h2 {
 .actions a {
   margin-left: 5px;
 }
+
+/* profile image */
+.profile-image {
+  padding: 20px;
+}
+
+.profile-image img {
+  width: 100%;
+  height: auto;
+}
+
+.file-input {
+  display: none;
+}
+
+.upload-button {
+  float: right;
+  margin-top: 20px;
+}
