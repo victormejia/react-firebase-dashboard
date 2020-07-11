@@ -7,6 +7,15 @@ function Login(props) {
   const { register, handleSubmit, reset } = useForm();
   const [isLoading, setLoading] = useState(false);
 
+  const routeOnLogin = async (user) => {
+    const token = await user.getIdTokenResult();
+    if (token.claims.admin) {
+      props.history.push('/users');
+    } else {
+      props.history.push(`/profile/${user.uid}`);
+    }
+  };
+
   const onSubmit = async (data) => {
     let user;
     setLoading(true);
@@ -18,7 +27,7 @@ function Login(props) {
     }
 
     if (user) {
-      props.history.push(`/profile/${user.uid}`);
+      routeOnLogin(user);
     } else {
       setLoading(false);
     }
