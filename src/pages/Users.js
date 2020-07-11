@@ -8,12 +8,39 @@ const Users = () => {
     const usersRef = firestore.collection('users');
     const unsubscribe = usersRef.onSnapshot((querySnapshot) => {
       const users = querySnapshot.docs.map((doc) => doc.data());
-      console.log(users);
+      setUsers(users);
     });
     return unsubscribe;
   }, []);
 
-  return <div>Users</div>;
+  return (
+    <div>
+      <table className="ui selectable celled table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Specialty</th>
+            <th>Secret Address</th>
+            <th>Phone</th>
+            <th>IP Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user) => (
+            <tr key={user.uid}>
+              <td>{user.name}</td>
+              <td>{user.specialty}</td>
+              <td>
+                {user.address} {user.city}, {user.state} {user.zip}
+              </td>
+              <td>{user.phone}</td>
+              <td>{user.ip}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export default Users;
